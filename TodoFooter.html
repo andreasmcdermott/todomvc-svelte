@@ -1,0 +1,53 @@
+<footer>
+  <span class="remainingCount">{{uncompletedItems}} item{{uncomplatedItems !== 1 ? 's' : ''}} left</span>
+  <a href="#" class="clearCompleted">Clear completed</a><!--onclick="{onClearCompleted}"-->
+  <div class="filters">
+    {{#each filters as filter}}
+    <a href="#" class="filter"><!--{filter.title}-->Filter</a><!--{active: activeFilter === key}-->
+    {{/each}}
+  </div>
+</footer>
+
+<script>
+export default {
+  data() {
+    return {
+      filters: []
+    }
+  }
+}
+</script>
+
+<style>
+footer {
+  background-color: white;
+  border-top: 1px solid #DDDDDD;
+  font-size: 0.8em;
+  padding: 0.5em;
+}
+
+.filters {
+  width: 40%;
+  margin: 0 auto;
+}
+
+.filter {
+  display: inline-block;
+  padding: 0.2em;
+}
+
+.filter.active {
+  border-bottom: 2px solid red;
+  margin-bottom: -2px;
+}
+
+.remainingCount {
+  padding: 0.2em;
+  float: left;
+}
+
+.clearCompleted {
+  padding: 0.2em;
+  float: right;
+}
+</style>

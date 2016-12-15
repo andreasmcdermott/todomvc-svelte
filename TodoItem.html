@@ -1,0 +1,55 @@
+<div class="todo-item">
+  <input type="checkbox" checked="{{item.completed}}" on:click="toggleCompleted(event)" />
+  {{#if editing}}
+    <input name="editInput" type="text" bind:value="item.title" />
+  {{else}}
+    <label class="{{item.completed ? 'completed' : ''}}" on:dblclick="set({ editing: true })">{{item.title}}</label>
+  {{/if}}
+</div>
+
+<script>
+export default {
+  data() {
+    return {
+      editing: false,
+      item: {
+        title: '',
+        completed: false
+      }
+    }
+  },
+  methods: {
+    toggleCompleted(e) {
+      this.fire('toggleCompleted', { item: this.get('item') })
+      e.preventDefault();
+    }
+  }
+}
+</script>
+
+<style>
+[type=checkbox] {
+  position: absolute;
+  left: 0;
+}
+
+[type=text] {
+  width: calc(100% - 4em);
+  border: none;
+  display: inline-block;
+  margin-left: 2em;
+  font-size: 1em;
+  padding: 0;
+}
+
+label {
+  width: calc(100% - 2em);
+  margin-left: 2em;
+  display: inline-block;
+}
+
+label.completed {
+  text-decoration: line-through;
+  color: #DDDDDD;
+}
+</style>
